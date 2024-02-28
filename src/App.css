@@ -150,3 +150,21 @@
 .clearfix {
   clear: both;
 }
+
+/* Add these styles at the end of your existing CSS file */
+
+.resizable-component.add-component {
+  background-color: #4CAF50; /* Green background color */
+  color: white; /* White text color */
+  border: none; /* No border */
+  padding: 10px; /* Padding for the button */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Display as inline-block so the width is only as big as the content */
+  font-size: 16px; /* Font size for the button text */
+  cursor: pointer; /* Add a pointer cursor on hover */
+}
+
+.resizable-component.add-component:hover {
+  background-color: #45a049; /* Darker green color on hover */
+}
