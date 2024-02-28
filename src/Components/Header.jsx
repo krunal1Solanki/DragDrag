@@ -17,7 +17,7 @@ const Header = () => {
   useEffect(()=> {
     const fetchCounter = async () => {
       try {
-        const info = await axios.get('https://wondrous-jelly-fe83fb.netlify.app/api/getCounter');
+        const info = await axios.get('https://enchanting-gaiters-fly.cyclic.app/api/getCounter');
         console.log("INFOOOO",info.data.info[0])
         setUpdateCount(info.data.info[0].updateCount);
         setComponentCount(info.data.info[0].componentCount)
@@ -43,7 +43,7 @@ const Header = () => {
 
   const handleAddModalData = async () => {
     try {
-        const info = await axios.post('https://wondrous-jelly-fe83fb.netlify.app/api/addComponent', modalData);
+        const info = await axios.post('https://enchanting-gaiters-fly.cyclic.app/api/addComponent', modalData);
 
         // Close the modal
         setIsModalOpen(false);
