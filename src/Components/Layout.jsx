@@ -12,7 +12,7 @@ const Layout = () => {
     }, [])
 
     const getData = async () => {
-        const data = await axios.get('https://enchanting-gaiters-fly.cyclic.app/api/getComponents');
+        const data = await axios.get('https://wondrous-jelly-fe83fb.netlify.app/api/getComponents');
         console.log(data.data.info)
         setComponents(data.data.info)
     }
@@ -27,7 +27,7 @@ const Layout = () => {
     const updateComponentSizeAndContent = async (_id, width, height, info) => {
         console.log(_id, width, height, info)
 
-        await axios.post('https://enchanting-gaiters-fly.cyclic.app/api/updateComponent', {
+        await axios.post('https://wondrous-jelly-fe83fb.netlify.app/api/updateComponent', {
            initialHeight : height, initialWidth : width, info, _id
         })
         setComponents((prevComponents) =>
@@ -37,6 +37,7 @@ const Layout = () => {
                     : component
             )
         );
+        window.location.reload()
     };
 
     const renderComponents = () => {

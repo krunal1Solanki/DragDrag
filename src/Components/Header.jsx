@@ -4,12 +4,29 @@ import { FaPlus } from 'react-icons/fa';
 import axios from 'axios';
 
 const Header = () => {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [updateCount, setUpdateCount] = useState(0);
+  const [componentCount, setComponentCount] = useState(0);
   const [modalData, setModalData] = useState({
     initialHeight: '',
     initialWidth: '',
     info: ''
   });
+
+  useEffect(()=> {
+    const fetchCounter = async () => {
+      try {
+        const info = await axios.get('https://wondrous-jelly-fe83fb.netlify.app/api/getCounter');
+        console.log("INFOOOO",info.data.info[0])
+        setUpdateCount(info.data.info[0].updateCount);
+        setComponentCount(info.data.info[0].componentCount)
+      } catch (error) {
+        window.prompt(error.message)
+      }
+    }
+    fetchCounter()
+  }, [])
 
   const handleAddComponentClick = () => {
     setIsModalOpen(true);
@@ -26,7 +43,7 @@ const Header = () => {
 
   const handleAddModalData = async () => {
     try {
-        const info = await axios.post('https://enchanting-gaiters-fly.cyclic.app/api/addComponent', modalData);
+        const info = await axios.post('https://wondrous-jelly-fe83fb.netlify.app/api/addComponent', modalData);
 
         // Close the modal
         setIsModalOpen(false);
@@ -53,7 +70,9 @@ const Header = () => {
         >
           Add Component
         </Button>
-        <Badge colorScheme="gray">{`Counter: ${0}`}</Badge>
+        <Badge colorScheme="gray">{`Components: ${componentCount}`}</Badge>
+        <Badge colorScheme="gray">{`Updations: ${updateCount}`}</Badge>
+
       </Box>
 
       {/* Modal for Add Component */}
