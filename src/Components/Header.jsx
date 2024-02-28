@@ -3,11 +3,9 @@ import { Box, Flex, Heading, Button, Badge, Modal, ModalOverlay, ModalContent, M
 import { FaPlus } from 'react-icons/fa';
 import axios from 'axios';
 
-const Header = () => {
+const Header = ({componentCount, updateCount, setComponentCount, setUpdateCount, getData, fetchCounter}) => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [updateCount, setUpdateCount] = useState(0);
-  const [componentCount, setComponentCount] = useState(0);
   const [modalData, setModalData] = useState({
     initialHeight: '',
     initialWidth: '',
@@ -15,19 +13,9 @@ const Header = () => {
   });
 
   useEffect(()=> {
-    const fetchCounter = async () => {
-      try {
-        const info = await axios.get('https://enchanting-gaiters-fly.cyclic.app/api/getCounter');
-        console.log("INFOOOO",info.data.info[0])
-        setUpdateCount(info.data.info[0].updateCount);
-        setComponentCount(info.data.info[0].componentCount)
-      } catch (error) {
-        window.prompt(error.message)
-      }
-    }
-    fetchCounter()
-  }, [])
-
+    console.log("CHANGED", updateCount, componentCount)
+  }, [updateCount, componentCount])
+  
   const handleAddComponentClick = () => {
     setIsModalOpen(true);
   };
@@ -44,10 +32,10 @@ const Header = () => {
   const handleAddModalData = async () => {
     try {
         const info = await axios.post('https://enchanting-gaiters-fly.cyclic.app/api/addComponent', modalData);
-
-        // Close the modal
+        await fetchCounter()
+        await getData()
         setIsModalOpen(false);
-        window.location.reload();
+        // window.location.reload();
 
     } catch (error) {
         console.error("Error adding component:", error);
