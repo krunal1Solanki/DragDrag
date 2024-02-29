@@ -56,8 +56,6 @@ const Layout = ({componentCount,  updateCount, setComponentCount, setUpdateCount
                 <div key={`row${i}`} className="row">
                     {rowComponents.map((component) => (
                         <div key={component._id} className="col">
-                            <Card className="card">
-                                <CardBody>
                                     <ResizableComponent
                                         _id={component._id}  // Pass _id as a prop to ResizableComponent
                                         ref={resizableRef}
@@ -76,8 +74,6 @@ const Layout = ({componentCount,  updateCount, setComponentCount, setUpdateCount
                                     >
                                         {component.info}
                                     </ResizableComponent>
-                                </CardBody>
-                            </Card>
                         </div>
                     ))}
                 </div>
